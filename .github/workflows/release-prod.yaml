@@ -18,7 +18,5 @@ jobs:
         with:
           source: "main"
           target: "production"
-          strategy: "fail"
-          git_committer_name: 'ETCTiago'
-          git_committer_email: 'tiago@etc.digital'
+          strategy: "rebase"
           github_token: ${{ secrets.GH_TOKEN }}
