@@ -1,0 +1,20 @@
+name: Release version
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  release-production:
+    name: Release Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+      - name: Sync Prod Branch
+        uses: connor-baer/action-sync-branch@main
+        with:
+          branch: prod
+          token: ${{ secrets.GITHUB_TOKEN }}
+          force: false
