@@ -15,6 +15,6 @@ jobs:
       - name: Sync Prod Branch
         uses: connor-baer/action-sync-branch@main
         with:
-          branch: prod
+          branch: production
           token: ${{ secrets.GITHUB_TOKEN }}
           force: false
