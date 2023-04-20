@@ -3,7 +3,7 @@ name: Release version
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
   release-production:
@@ -13,8 +13,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@master
       - name: Sync Prod Branch
-        uses: connor-baer/action-sync-branch@main
+        uses: jojomatik/sync-branch@v1
         with:
+          source: "main"
           branch: production
-          token: ${{ secrets.GITHUB_TOKEN }}
-          force: false
+          strategy: "merge"
+          # The changes to accept, if strategy `merge` leads to merge conflicts
+          #   Optional
+          #   Default: `target`
+          #   Possible values:
+          #     - `target`: forces conflicts to be auto-resolved cleanly by favoring
+          #                 the target version. All non-conflicting changes are reflected 
+          #                 in the merge result.
+          #     - `source`: forces conflicts to be auto-resolved cleanly by favoring
+          #                 the source version. All non-conflicting changes are reflected 
+          #                 in the merge result.
+          #     - `false`:  `merge` fails if any merge conflicts occur.
+          resolve_conflicts: "target"
+          # The name to create merge commits with
+          #   Required, if strategy `merge` is used
+          git_committer_name: 'ETCTiago'
+          # The email to create merge commits with
+          #   Required, if strategy `merge` is used
+          git_committer_email: 'tiago@etc.digital'
+          # The access token to push to the repository
+          #   Optional
+          #   Default: github.token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
