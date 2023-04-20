@@ -21,4 +21,4 @@ jobs:
           strategy: "fail"
           git_committer_name: 'ETCTiago'
           git_committer_email: 'tiago@etc.digital'
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
